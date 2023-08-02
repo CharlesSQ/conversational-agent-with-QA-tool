@@ -1,2 +1,3 @@
 /agent/
+/__pycache__/*
 config.py

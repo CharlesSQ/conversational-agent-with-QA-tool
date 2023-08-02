@@ -9,9 +9,7 @@ from langchain.agents import LLMSingleActionAgent, AgentExecutor, Tool
 from langchain import LLMChain
 from output_parser import CustomOutputParser1, CustomOutputParser2
 from prompt_template import CustomPromptTemplate
-from langchain.chains import ConversationChain
 from prompts import TEMPLATE_INSTRUCTIONS_1, TEMPLATE_INSTRUCTIONS_2, SUFFIX
-from tools import LLMChatChain
 
 # Set API key for OpenAI
 os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
@@ -28,28 +26,21 @@ print('Memory buffer set')
 
 # Set tools
 llm_math_chain = LLMMathChain.from_llm(llm=llm_chat)
-# conversation = LLMChatChain(
-#     llm=llm_chat, memory=memory)
+
 tools = [
     Tool(
         name="Calculator",
         func=llm_math_chain.run,
         description="useful for when you need to answer questions about math",
         # return_direct=True,
-    ),
-    # Tool(
-    #     name="chat",
-    #     func=conversation.respond_to_user,
-    #     description="useful for when you need to respond to user utterance without using other tools. use the question as the input",
-    #     return_direct=True
-    # )
+    )
 ]
 
 # Set up prompt template
 prompt = CustomPromptTemplate(
     prefix='',
-    instructions=TEMPLATE_INSTRUCTIONS_2,
-    sufix='',
+    instructions=TEMPLATE_INSTRUCTIONS_1,
+    sufix=SUFFIX,
     tools=tools,
     # This omits the `agent_scratchpad`, `tools`, and `tool_names` variables because those are generated dynamically
     # This includes the `intermediate_steps` variable because that is needed
@@ -57,7 +48,7 @@ prompt = CustomPromptTemplate(
 )
 
 # Set up output parser
-output_parser = CustomOutputParser2()
+output_parser = CustomOutputParser1()
 
 # Set up the agent
 llm_chain = LLMChain(llm=llm_chat, prompt=prompt)
