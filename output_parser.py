@@ -1,8 +1,6 @@
 from langchain.agents import AgentOutputParser
 from langchain.schema import AgentAction, AgentFinish
 from langchain.output_parsers.json import parse_json_markdown
-from typing import Union
-import re
 
 
 class CustomOutputParser(AgentOutputParser):
