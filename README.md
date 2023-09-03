@@ -18,8 +18,15 @@ The project showcases the implementation of a custom chat agent that leverages L
 
 1. Clone this repository to your local machine.
 2. Install the required dependencies by running: `pip install -r requirements.txt`
-3. Obtain an API key from OpenAI and set it in the `OPENAI_API_KEY` field in the `config.py` file.
-4. Obtain API keys for Pinecone and set them in the `config.py` file.
+3. Obtain the API keys from OpenAI and Pinecone.
+4. You must create a `config.py` file that defines the following:
+
+   ```python
+   OPENAI_API_KEY = 'YOUR_OPENAI_API_KEY'
+   PINECONE_API_KEY = 'YOUR_PINECONE_API_KEY'
+   PINECONE_API_ENVIRONMENT = 'YOUR_PINECONE_ENVIRONMENT'
+   ```
+
 5. Get a previously created Pinecone index name, for document retrieval and set it in the `constants.py` file.
 
 ## Usage
