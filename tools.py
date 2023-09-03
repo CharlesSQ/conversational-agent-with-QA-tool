@@ -12,7 +12,7 @@ pinecone.init(
     api_key=PINECONE_API_KEY,
     environment=PINECONE_API_ENVIRONMENT
 )
-print('Pinecone API key set')
+
 # Set Pinecone index
 embeddings = OpenAIEmbeddings(client='')
 

@@ -42,6 +42,10 @@ class CustomPromptTemplate(BaseChatPromptTemplate):
 
         # Create a list of tool names for the tools provided
         kwargs["tool_names"] = ", ".join([tool.name for tool in self.tools])
+
+        # Format the instructions replacing the variables with the values
         formatted = self.instructions.format(**kwargs)
+
+        # Add the sufix
         formatted += self.sufix
         return [SystemMessage(content=formatted)]
